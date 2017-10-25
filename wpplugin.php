@@ -3,7 +3,7 @@
  * Plugin Name:       WP Plugin
  * Plugin URI:        http://micheleivani.com
  * Description:       Test plugin.
- * Version:           0.1.0
+ * Version:           0.2.0
  * Author:            Michele Ivani
  * Author URI:        http://micheleivani.com
  * Text Domain:       wpplugin
@@ -16,6 +16,8 @@ namespace MI;
 if (! defined( 'WPINC' )) {
     die;
 }
+
+require_once('updater.php');
 
 class Options_Page
 {
@@ -51,3 +53,7 @@ class Options_Page
 }
 
 new Options_Page;
+
+if ( is_admin() ) {
+    new BFIGitHubPluginUpdater( __FILE__, 'micheleivani', 'wp-plugin' );
+}
